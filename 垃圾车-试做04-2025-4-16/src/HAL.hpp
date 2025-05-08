@@ -35,11 +35,11 @@ namespace HAL {
     private:
         float targetYaw;          // 目标偏航角
         bool isActive;            // 是否激活水面定向行驶
-        const float PROPULSION_SPEED = 500;  // 推进器前进速度
+        const float PROPULSION_SPEED = 80;  // 推进器前进速度
         const float TURNING_SPEED = 400;     // 转向轮速度
-        const float CORRECTION_THRESHOLD = 10.0f; // 修正阈值(度)
+        const float CORRECTION_THRESHOLD = 5.0f; // 修正阈值(度)
         unsigned long lastUpdateTime = 0;
-        const unsigned long UPDATE_INTERVAL = 20; // 50ms更新一次
+        const unsigned long UPDATE_INTERVAL = 100; // 100ms更新一次
         
     public:
         WaterDirectionalDriving() : targetYaw(0), isActive(false) {}
@@ -87,12 +87,12 @@ namespace HAL {
               
               if (error > 0) {
                   // 右转
-                  motor_dir_set(MotorC, 1); motor_duty_set(MotorC, turningSpeed);
-                  motor_dir_set(MotorD, 1); motor_duty_set(MotorD, turningSpeed);
-              } else {
-                  // 左转
                   motor_dir_set(MotorC, 0); motor_duty_set(MotorC, turningSpeed);
                   motor_dir_set(MotorD, 0); motor_duty_set(MotorD, turningSpeed);
+              } else {
+                  // 左转
+                  motor_dir_set(MotorC, 1); motor_duty_set(MotorC, turningSpeed);
+                  motor_dir_set(MotorD, 1); motor_duty_set(MotorD, turningSpeed);
               }
           } else {
               maintainDirection();
@@ -116,12 +116,12 @@ namespace HAL {
             
             if (error > 0) {
                 // 右转 - C/D轮正向转动
-                motor_dir_set(MotorC, 1); motor_duty_set(MotorC, TURNING_SPEED);
-                motor_dir_set(MotorD, 1); motor_duty_set(MotorD, TURNING_SPEED);
-            } else {
-                // 左转 - C/D轮反向转动
                 motor_dir_set(MotorC, 0); motor_duty_set(MotorC, TURNING_SPEED);
                 motor_dir_set(MotorD, 0); motor_duty_set(MotorD, TURNING_SPEED);
+            } else {
+                // 左转 - C/D轮反向转动
+                motor_dir_set(MotorC, 1); motor_duty_set(MotorC, TURNING_SPEED);
+                motor_dir_set(MotorD, 1); motor_duty_set(MotorD, TURNING_SPEED);
             }
         }
         
