@@ -76,7 +76,7 @@ void motor_function(uint8_t func_num,uint8_t mode_num)
       } 
       else if (mode_num == 1) {
         delay(50);
-        ledcWrite(CONFIG_MOTOR4_PWM_CHN, 97);
+        ledcWrite(CONFIG_MOTOR4_PWM_CHN, 80);
       }
       else if (mode_num == 2) {
         delay(50);
@@ -90,7 +90,7 @@ void motor_function(uint8_t func_num,uint8_t mode_num)
       } 
       else if (mode_num == 1) {
         delay(50);
-        ledcWrite(CONFIG_MOTOR5_PWM_CHN, 97);
+        ledcWrite(CONFIG_MOTOR5_PWM_CHN, 80);
       }
       else if (mode_num == 2) {
         delay(50);
@@ -104,7 +104,7 @@ void motor_function(uint8_t func_num,uint8_t mode_num)
       } 
       else if (mode_num == 1) {
         delay(50);
-        ledcWrite(CONFIG_MOTOR6_PWM_CHN, 99);
+        ledcWrite(CONFIG_MOTOR6_PWM_CHN, 80);
       }
       else if (mode_num == 2) {
         delay(50);
